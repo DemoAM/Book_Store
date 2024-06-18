@@ -4,7 +4,7 @@ from.models import Author,Book,BookCategory
 
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
-    list_display = ['id','name','age']
+    list_display = ['id','name']
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):

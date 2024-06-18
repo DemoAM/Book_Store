@@ -1,13 +1,15 @@
-from rest_framework.views import APIView
-from.models import Author,Book,BookCategory
-from.serializers import AuthorSerializer,BookSerializers,CategorySerializers
-from rest_framework.decorators import api_view
+from rest_framework import viewsets
+from .serializers import AuthorSerializer,CategorySerializers
+from.models import Author,BookCategory
+from rest_framework import status
 from rest_framework.response import Response
+from django.contrib.auth.views import LogoutView
 
 
-class BookList(APIView):
-    @api_view(['GET'])
-    def list(self,request):
-        book = Book.objects.all()
-        serializer = BookSerializers(book,many=True)
-        return Response(serializer.data)
+
+class Category(viewsets.ModelViewSet):
+    queryset = BookCategory.objects.all()
+    serializer_class = CategorySerializers
+
+
+

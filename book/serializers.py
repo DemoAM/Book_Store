@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from . models import Author,Book,BookCategory
+from django.contrib.auth.models import User
 
 
 class AuthorSerializer(serializers.ModelSerializer):
@@ -11,11 +12,7 @@ class AuthorSerializer(serializers.ModelSerializer):
     def validate_name(self,value)    :
         if value[0].islower():
             raise serializers.ValidationError("Your First Letter must be captilized")
-    def validate_age(self,value):
-        if value <=18:
-            raise serializers.ValidationError ("You are not eligble")
-
-
+        return value
 class BookSerializers(serializers.ModelSerializer):
     class Meta:
         model = Book
